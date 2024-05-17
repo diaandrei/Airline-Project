@@ -1,0 +1,23 @@
+{% extends "city_base.html" %}
+{% block title %}City Module{% endblock %}
+{% block content %}
+<div class="container">
+    <br/>
+    <a class="btn btn-info" href="{% url 'city add' %}">Add New</a>
+    <table class="table">
+        <tr>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+        {% for city in cities %}
+        <tr>
+            <td>{{ city.name }}</td>
+            <td>
+                <a class="btn btn-info" href="view/{{ city.id }}">Detail View</a>
+                <a class="btn btn-danger" href="delete/{{ city.id }}">Delete Item</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
