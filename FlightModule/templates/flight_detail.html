@@ -1,0 +1,21 @@
+{% extends "flight_base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Flight Module{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Flight Detail View</h2>
+    {% if messages %}
+        {% for message in messages %}
+        <div{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
+    <form class="form" action="{% url 'flight detailview' id=flight.id %}" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{ flight.id }}">
+        {{ form | crispy }}
+    </form>
+</div>
+{% endblock %}
